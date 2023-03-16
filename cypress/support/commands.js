@@ -13,8 +13,8 @@ Cypress.Commands.add('login', (user, pass) =>{
         url: '/minha-conta',
         method: 'POST',
         body: fd
-    }).then(resp => {
-        resp.headers['set-cookies'].forEach(cookie =>{
+    }).its('allRequestResponses').its('0').its('Response Headers').then(response => {
+        response['set-cookies'].forEach(cookie =>{
             const firstPart = cookie.split(';')[0]
             const divisor = firstPart.indexOf('=')
             const key = firstPart.substring(0, divisor)
