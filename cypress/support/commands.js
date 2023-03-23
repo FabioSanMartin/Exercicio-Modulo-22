@@ -2,25 +2,52 @@
 
 Cypress.Commands.add('login', (user, pass) =>{
     const fd = new FormData()
-    fd.append('username', user)
-    fd.append('pasword', pass)
-    fd.append('woocommerce-login-nonce', 'ebaf25e93d')
-    fd.append('_wp_http_referer', `/minha-conta`)
-    fd.append('login', "Login")
+    fd.append('log', user)
+    fd.append('pwd', pass)
+    fd.append('wp-submit', 'Acessar')
+    fd.append('redirect_to', `/wp-admin`)
     fd.append('testcookie', 1)
-    
+
     cy.request({
-        url: '/minha-conta',
-        method: 'POST',
+        url: `/wp-login.php`,
+        method: "POST",
         body: fd
-    }).its('allRequestResponses').its('0').its('Response Headers').then(response => {
-        response['set-cookies'].forEach(cookie =>{
+    }).then((resp) => {
+        resp.headers['set-cookie'].forEach(cookie => {
             const firstPart = cookie.split(';')[0]
-            const divisor = firstPart.indexOf('=')
-            const key = firstPart.substring(0, divisor)
-            const value = firstPart.substring(divisor+1)
-            cy.setCookie(key, value)
+            const separator = firstPart.indexOf('=')
+            const name = firstPart.substring(0, separator)
+            const value = firstPart.substring(separator + 1)
+            cy.setCookie(name, value)
         })
     })
-    cy.visit('/minha-conta')
+    cy.visit(`/minha-conta`)
+})
+
+Cypress.Commands.add('checkout', (firstName, lastName, country, address1, city, state, postCode, phone, email) => {
+    const fd = new FormData()
+    fd.append('wc-ajax', 'checkout')
+    fd.append('billing_first_name', firstName)
+    fd.append('billing_last_name', lastName)
+    fd.append('billing_country', country)
+    fd.append('billing_address_1', address1)
+    fd.append('billing_city', city)
+    fd.append('billing_state', state)
+    fd.append('billing_postcode', postCode)
+    fd.append('billing_phone', phone)
+    fd.append('billing_email', email)
+    fd.append('payment_method', 'bacs')
+    fd.append('terms', 'on')
+    fd.append('terms-field', 1)
+    fd.append('woocommerce-process-checkout-nonce', '30e0a8c583')
+    fd.append('_wp_http_referer', `/?wc-ajax=update_order_review`)
+    cy.request({
+        url: `/?wc-ajax=checkout`,
+        method: "POST",
+        body: fd
+    }).then((resp) => {
+        expect(resp.status).to.eq(200)
+                
+    })
+     cy.visit(`/checkout`) 
 })

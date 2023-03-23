@@ -1,10 +1,9 @@
 const data = require ('../fixtures/data.json')
 
 describe('Funcionalidade de checkout', () => {
-   beforeEach(() => {
-    cy.login(data.usuario, data.senha)
-   });
-    it('Deve realizar o checkout com sucesso', () => {
+       it('Deve realizar o checkout com sucesso', () => {
+        cy.login(data.usuario, data.senha)
+        cy.checkout(data.firstName, data.lastName, data.country, data.address1, data.city, data.city, data.state, data.postCode, data.phone, data.email)
         
     });
 });
