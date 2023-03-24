@@ -1,6 +1,7 @@
 /// <reference types="cypress" />
 
-Cypress.Commands.add('login', (user, pass) =>{
+
+Cypress.Commands.add('login', (user, pass) => {
     const fd = new FormData()
     fd.append('log', user)
     fd.append('pwd', pass)
@@ -21,8 +22,36 @@ Cypress.Commands.add('login', (user, pass) =>{
             cy.setCookie(name, value)
         })
     })
-    cy.visit(`/minha-conta`)
+    cy.visit(`/product/josie-yoga-jacket`)
 })
+
+Cypress.Commands.add('addIten', (size, color, quantity, cart, prodId, varId) => {
+    const fd = new FormData()
+    fd.append('attribute_size', size)
+    fd.append('attribute_color', color)
+    fd.append('quantity', quantity)
+    fd.append('add-to-cart', cart)
+    fd.append('product_id', prodId)
+    fd.append('variation_id', varId)
+
+    cy.request({
+        url: `/`,
+        method: "POST",
+        body: fd
+    }).then((resp) => {
+        resp.headers['set-cookie'].forEach(cookie => {
+            const firstPart = cookie.split(';')[0]
+            const separator = firstPart.indexOf('=')
+            const name = firstPart.substring(0, separator)
+            const value = firstPart.substring(separator + 1)
+            cy.setCookie(name, value)
+        })
+    })
+    cy.visit(`/carrinho`)
+})
+
+
+
 
 Cypress.Commands.add('checkout', (firstName, lastName, country, address1, city, state, postCode, phone, email) => {
     const fd = new FormData()
@@ -47,7 +76,13 @@ Cypress.Commands.add('checkout', (firstName, lastName, country, address1, city, 
         body: fd
     }).then((resp) => {
         expect(resp.status).to.eq(200)
-                
+
     })
-     cy.visit(`/checkout`) 
+    cy.visit(`/checkout`)
+})
+
+Cypress.Commands.add('checkoutConfirm', () => {
+    cy.get('#terms').click()
+    cy.get('#place_order').click()
+    cy.wait(3000)
 })
