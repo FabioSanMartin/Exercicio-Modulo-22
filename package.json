@@ -21,5 +21,8 @@
     "dotenv": "^16.0.3",
     "mocker-data-generator": "^3.0.1",
     "node": "^19.8.1"
+  },
+  "cypress-cucumber-preprocessor": {
+    "nonGlobalStepDefinitions": true
   }
 }

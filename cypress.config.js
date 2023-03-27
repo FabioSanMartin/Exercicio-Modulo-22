@@ -1,12 +1,12 @@
+
 module.exports = {
   integration: {
-    specPattern: '**/*.spec.js',
-    baseUrl: 'http://lojaebac.ebaconline.art.br',
+    "specPattern": "**/*.spec.js"
   },
-  e2e: {
-    baseUrl: 'http://lojaebac.ebaconline.art.br',
-    
-      }
-      
-}
+  "e2e": {
+    "specPattern": "**/*.feature",
+    baseUrl: 'http://lojaebac.ebaconline.art.br'
+  },
+  
+};
 

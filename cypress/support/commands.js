@@ -25,30 +25,32 @@ Cypress.Commands.add('login', (user, pass) => {
     cy.visit(`/product/josie-yoga-jacket`)
 })
 
-Cypress.Commands.add('addIten', (size, color, quantity, cart, prodId, varId) => {
-    const fd = new FormData()
-    fd.append('attribute_size', size)
-    fd.append('attribute_color', color)
-    fd.append('quantity', quantity)
-    fd.append('add-to-cart', cart)
-    fd.append('product_id', prodId)
-    fd.append('variation_id', varId)
+Cypress.Commands.add('addIten', () => {
+    cy.get('.button-variable-item-XS').click()
+    cy.get('.button-variable-item-Black').click()
+    cy.get('.input-text').clear().type(2)
+    cy.get('.single_add_to_cart_button').click()
 
-    cy.request({
-        url: `/`,
-        method: "POST",
-        body: fd
-    }).then((resp) => {
-        resp.headers['set-cookie'].forEach(cookie => {
-            const firstPart = cookie.split(';')[0]
-            const separator = firstPart.indexOf('=')
-            const name = firstPart.substring(0, separator)
-            const value = firstPart.substring(separator + 1)
-            cy.setCookie(name, value)
-        })
-    })
-    cy.visit(`/carrinho`)
 })
+
+//Cypress.Commands.add('addIten', (size, color, quantity, cart, prodId, varId) => {
+  //  const fd = new FormData()
+   // fd.append('attribute_size', size)
+    //fd.append('attribute_color', color)
+    //fd.append('quantity', quantity)
+    //fd.append('add-to-cart', cart)
+    //fd.append('product_id', prodId)
+    //fd.append('variation_id', varId)
+
+    //cy.request({
+  //      url: `/product/josie-yoga-jacket`,
+    //    method: "POST",
+      //  body: fd
+    //}).then((resp) => {
+        //expect(resp.status).to.eq(200)
+    //})
+    //cy.visit(`/product/josie-yoga-jacket`)
+//})
 
 
 
