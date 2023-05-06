@@ -1,7 +1,6 @@
-
 module.exports = {
   integration: {
-    "specPattern": "**/*.spec.js"
+    "specPattern": "**/*.feature"
   },
   "e2e": {
     "specPattern": "**/*.feature",

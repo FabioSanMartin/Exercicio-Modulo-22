@@ -1,9 +1,9 @@
-/// <reference types="cypress" />
+ <reference types="cypress" />
 
 import { Given, When, Then } from 'cypress-cucumber-preprocessor/steps';
-const data = require('../fixtures/data.json')
+const data = require('../../fixtures/data.json')
 
-Given("Eu acesse a página da EBAC Store com meu usuario {string} e a senha {string}", (usuario, senha) => {
+Given('Eu acesse a página da EBAC Store com meu usuario e a senha ', () => {
     cy.login(data.usuario, data.senha)
 })
 

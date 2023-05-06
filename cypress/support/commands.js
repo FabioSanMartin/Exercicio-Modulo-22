@@ -1,10 +1,10 @@
 /// <reference types="cypress" />
 
 
-Cypress.Commands.add('login', (user, pass) => {
+Cypress.Commands.add('login', (usuario, senha) => {
     const fd = new FormData()
-    fd.append('log', user)
-    fd.append('pwd', pass)
+    fd.append('log', usuario)
+    fd.append('pwd', senha)
     fd.append('wp-submit', 'Acessar')
     fd.append('redirect_to', `/wp-admin`)
     fd.append('testcookie', 1)
@@ -22,15 +22,17 @@ Cypress.Commands.add('login', (user, pass) => {
             cy.setCookie(name, value)
         })
     })
-    cy.visit(`/product/josie-yoga-jacket`)
+    
 })
 
 Cypress.Commands.add('addIten', () => {
+    cy.visit(`/product/josie-yoga-jacket`)
     cy.get('.button-variable-item-XS').click()
     cy.get('.button-variable-item-Black').click()
     cy.get('.input-text').clear().type(2)
     cy.get('.single_add_to_cart_button').click()
-
+    cy.get('.woocommerce-message > .button').click()
+    cy.get('.checkout-button').click()
 })
 
 //Cypress.Commands.add('addIten', (size, color, quantity, cart, prodId, varId) => {

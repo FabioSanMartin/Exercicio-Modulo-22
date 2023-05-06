@@ -1,4 +1,4 @@
-class cadastroPage {
+class cadastro {
     get #email() { return cy.get("#reg_email") }
     get #pass() { return cy.get("#reg_password") }
     get #reg() { return cy.get(":nth-child(4) > .button") }
@@ -9,18 +9,16 @@ class cadastroPage {
     
 
 
-cadastro(emailFaker, passFaker){
+cadastroPre(emailFaker, passFaker, nomeFaker, sobrenomeFaker){
     this.#email.type(emailFaker)
     this.#pass.type(passFaker)
     this.#reg.click()
-}
-cadastroCompleto(nome, sobrenome){
     this.#edit.click()
-    this.#firstName.clear().type(nome)
-    this.#lastName.clear().type(sobrenome)
+    this.#firstName.clear().type(nomeFaker)
+    this.#lastName.clear().type(sobrenomeFaker)
     this.#save.click()
-    
-}
 }
 
-module.exports = new cadastroPage
+}
+
+module.exports = new cadastro
