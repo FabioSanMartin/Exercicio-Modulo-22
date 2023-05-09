@@ -24,6 +24,7 @@
     "node": "^19.8.1"
   },
   "cypress-cucumber-preprocessor": {
-    "nonGlobalStepDefinitions": true
+    "nonGlobalStepDefinitions": true,
+    "stepDefinitions": "cypress/e2e"
   }
 }

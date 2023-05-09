@@ -35,27 +35,6 @@ Cypress.Commands.add('addIten', () => {
     cy.get('.checkout-button').click()
 })
 
-//Cypress.Commands.add('addIten', (size, color, quantity, cart, prodId, varId) => {
-  //  const fd = new FormData()
-   // fd.append('attribute_size', size)
-    //fd.append('attribute_color', color)
-    //fd.append('quantity', quantity)
-    //fd.append('add-to-cart', cart)
-    //fd.append('product_id', prodId)
-    //fd.append('variation_id', varId)
-
-    //cy.request({
-  //      url: `/product/josie-yoga-jacket`,
-    //    method: "POST",
-      //  body: fd
-    //}).then((resp) => {
-        //expect(resp.status).to.eq(200)
-    //})
-    //cy.visit(`/product/josie-yoga-jacket`)
-//})
-
-
-
 
 Cypress.Commands.add('checkout', (firstName, lastName, country, address1, city, state, postCode, phone, email) => {
     const fd = new FormData()
@@ -90,3 +69,5 @@ Cypress.Commands.add('checkoutConfirm', () => {
     cy.get('#place_order').click()
     cy.wait(3000)
 })
+
+

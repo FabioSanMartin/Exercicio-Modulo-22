@@ -1,3 +1,5 @@
+///
+
 class cadastro {
     get #email() { return cy.get("#reg_email") }
     get #pass() { return cy.get("#reg_password") }
