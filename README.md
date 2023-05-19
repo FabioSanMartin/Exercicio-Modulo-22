@@ -1,2 +1,2 @@
 # Exercicio-Modulo-22 
-Feita automação de testes utilizando as BDD, Cypress e Cucumber.
+Feita automação de testes utilizando BDD, Cypress e Cucumber.
