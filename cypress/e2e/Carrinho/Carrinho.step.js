@@ -8,9 +8,9 @@ Given('Eu visite a loja da EBAC Store', () => {
 })
 
 When('adicione um produto ao carrinho', () => {
-    cy.addIten()
+    cy.addCart()
 })
 
 Then('a mensagem de confirmação deve aparecer', () => {
-    cy.checkoutConfirm()
+    cy.get('.woocommerce-message').should('be.visible')
 })

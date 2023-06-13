@@ -69,6 +69,15 @@ Cypress.Commands.add('checkoutConfirm', () => {
     cy.wait(3000)
 })
 
+Cypress.Commands.add('addCart', () => {
+    cy.visit(`/product/josie-yoga-jacket`)
+    cy.get('.button-variable-item-XS').click()
+    cy.get('.button-variable-item-Black').click()
+    cy.get('.input-text').clear().type(2)
+    cy.get('.single_add_to_cart_button').click()
+        cy.get('.woocommerce-message').should('be.visible')
+})
+
 
 
 
