@@ -21,7 +21,7 @@ Cypress.Commands.add('login', (usuario, senha) => {
             cy.setCookie(name, value)
         })
     })
-    
+
 })
 
 Cypress.Commands.add('addIten', () => {
@@ -75,8 +75,24 @@ Cypress.Commands.add('addCart', () => {
     cy.get('.button-variable-item-Black').click()
     cy.get('.input-text').clear().type(2)
     cy.get('.single_add_to_cart_button').click()
-        cy.get('.woocommerce-message').should('be.visible')
+
 })
+
+Cypress.Commands.add('alterarQuantidade', () => {
+    cy.get('.woocommerce-message > .button').click()
+    cy.get('.quantity > .input-text').clear().type(3)
+
+})
+
+Cypress.Commands.add('confirmarAlteração', () => {
+    cy.wait(3000)
+    cy.get('.woocommerce-message').should('be.visible')
+})
+
+
+
+
+
 
 
 
