@@ -12,5 +12,6 @@ When('adicione um produto ao carrinho', () => {
 })
 
 Then('a mensagem de confirmação deve aparecer', () => {
+    cy.wait(3000)
     cy.get('.woocommerce-message').should('be.visible')
 })

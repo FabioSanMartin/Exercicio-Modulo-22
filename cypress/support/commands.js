@@ -76,18 +76,35 @@ Cypress.Commands.add('addCart', () => {
     cy.get('.input-text').clear().type(2)
     cy.get('.single_add_to_cart_button').click()
 
+
 })
 
 Cypress.Commands.add('alterarQuantidade', () => {
+    cy.wait(3000)
     cy.get('.woocommerce-message > .button').click()
     cy.get('.quantity > .input-text').clear().type(3)
-
+    cy.get('.actions > .clearfix > .pull-right').click()
 })
 
 Cypress.Commands.add('confirmarAlteração', () => {
     cy.wait(3000)
     cy.get('.woocommerce-message').should('be.visible')
+    cy.get('.woocommerce-message').should('contain', 'Carrinho atualizado')
 })
+
+
+Cypress.Commands.add('confirmarExclusão', () => {
+    cy.wait(3000)
+    cy.get('.cart-empty').should('be.visible')
+
+})
+
+Cypress.Commands.add('delete', () => {
+    cy.get('.woocommerce-message > .button').click()
+    cy.get('.remove > .fa').click()
+    cy.wait(4000)
+})
+
 
 
 
