@@ -21,7 +21,7 @@ When('Eu insira o e-mail, senha, nome e sobrenome', () => {
 })
 
 When('Eu clicar no botão "Cadastrar"', () => {
-confirmScreen.minhaConta.should("be.visible")
+    confirmScreen.minhaConta.should("be.visible")
 
 
 })

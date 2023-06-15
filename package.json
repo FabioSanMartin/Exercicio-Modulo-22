@@ -6,7 +6,9 @@
   "scripts": {
     "test": "npx cypress run",
     "cy:run": "cypress run",
-    "cypress:open": "cypress open"
+    "cypress:open": "cypress open",
+    "sorry:cypress": "set CYPRESS_API_URL=http://localhost:1234/ && cy2 run --record --key EBAC --parallel --ci-build-id `date +%s`"
+    
   },
   "keywords": [],
   "author": "",

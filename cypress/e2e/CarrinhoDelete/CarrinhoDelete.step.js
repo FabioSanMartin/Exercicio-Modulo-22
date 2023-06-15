@@ -4,8 +4,8 @@ import { Given, When, Then } from 'cypress-cucumber-preprocessor/steps';
 const fragments2 = require("../../fixtures/data.json")
 
 Given('eu visite a loja da EBAC Store', () => {
-cy.visit('/')
-cy.addCart()
+    cy.visit('/')
+    cy.addCart()
 })
 
 When('e exclua o produto que esta no carrinho', () => {
@@ -23,9 +23,9 @@ When('e exclua o produto que esta no carrinho', () => {
     );
 
 
-cy.delete()
+    cy.delete()
 })
 
 Then('a mensagem de removido e carrinho vazio deve aparecer', () => {
-cy.confirmarExclusão()
+    cy.confirmarExclusão()
 })

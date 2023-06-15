@@ -21,7 +21,7 @@ When('altere um produto no carrinho', () => {
             });
         }
     );
-    
+
     cy.alterarQuantidade()
 })
 
